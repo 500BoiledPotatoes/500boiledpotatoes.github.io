@@ -1,100 +1,610 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Lu Jingyu — Systems & HPC</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lu Jingyu — Academic Homepage</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --black:      #0f0f0e;
-      --gray:       #6b6b67;
-      --light-gray: #e6e4df;
-      --bg:         #f8f7f4;
-      --link:       #2a5db0;
-      --serif:      'EB Garamond', Georgia, serif;
-      --mono:       'DM Mono', 'Courier New', monospace;
-      --glass-bg:       rgba(255,255,255,0.52);
-      --glass-border:   rgba(255,255,255,0.88);
-      --glass-shadow:   0 4px 28px rgba(0,0,0,0.07), 0 1px 4px rgba(0,0,0,0.05);
-      --glass-hover-shadow: 0 10px 42px rgba(0,0,0,0.11), 0 2px 8px rgba(0,0,0,0.06);
+      --bg:       #ffffff;
+      --bg2:      #f5f5f5;
+      --black:    #111111;
+      --gray:     #666666;
+      --lgray:    #e4e4e4;
+      --xlgray:   #f0f0f0;
+      --link:     #1a4fa0;
+      --serif:    'Georgia', 'Times New Roman', serif;
+      --mono:     'Courier New', 'Courier', monospace;
+      --radius:   12px;
+      --shadow:   0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.06);
+      --shadow-h: 0 4px 8px rgba(0,0,0,0.08), 0 12px 32px rgba(0,0,0,0.10);
     }
 
-    html { font-size: 18px; scroll-behavior: smooth; }
+    html { font-size: 17px; scroll-behavior: smooth; }
 
     body {
       font-family: var(--serif);
       background: var(--bg);
       color: var(--black);
-      line-height: 1.75;
-      max-width: 740px;
-      margin: 0 auto;
-      padding: 0 2rem;
+      line-height: 1.78;
     }
 
-    /* ── NAV ── */
+    a { color: var(--link); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* NAV */
     nav {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 2.2rem 0 2rem;
-      border-bottom: 1px solid var(--light-gray);
-      margin-bottom: 3.5rem;
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.94);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--lgray);
+      padding: 0 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 52px;
     }
-    nav .logo { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray); }
-    nav ul { list-style: none; display: flex; gap: 2rem; }
-    nav a { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; color: var(--gray); transition: color 0.15s; }
-    nav a:hover { color: var(--black); }
+    .nav-name {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gray);
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-family: var(--mono);
+      font-size: 0.67rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray);
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--black); text-decoration: none; }
 
-    /* ── HERO ── */
-    .hero { display: grid; grid-template-columns: 1fr auto; gap: 2.5rem; align-items: start; margin-bottom: 4rem; }
-    .hero h1 { font-size: 2.7rem; font-weight: 400; line-height: 1.15; margin-bottom: 0.5rem; letter-spacing: -0.015em; }
-    .hero h1 em { font-style: italic; }
-    .subtitle { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.13em; text-transform: uppercase; color: var(--gray); margin-bottom: 1.3rem; }
-    .hero p { font-size: 1rem; color: #38382f; max-width: 470px; }
-    .hero-links { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-top: 1.5rem; }
-    .hero-links a {
-      font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.08em; text-transform: uppercase;
-      color: var(--gray); text-decoration: none; border: 1px solid var(--light-gray);
-      padding: 0.28rem 0.78rem; border-radius: 3px; transition: all 0.15s;
+    /* WRAP */
+    .wrap { max-width: 860px; margin: 0 auto; padding: 0 2.5rem; }
+
+    /* HERO */
+    .hero {
+      padding: 5rem 0 4rem;
+      display: grid;
+      grid-template-columns: 1fr 130px;
+      gap: 3rem;
+      align-items: center;
+      border-bottom: 1px solid var(--lgray);
     }
-    .hero-links a:hover { border-color: var(--black); color: var(--black); }
+    .hero h1 {
+      font-size: 2.7rem;
+      font-weight: normal;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.4rem;
+    }
+    .hero h1 span {
+      color: var(--gray);
+      font-size: 1.5rem;
+    }
+    .hero-sub {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 1.2rem;
+    }
+    .hero p { font-size: 1rem; color: #444; max-width: 500px; margin-bottom: 1.6rem; }
+    .hero-links { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+    .pill {
+      font-family: var(--mono);
+      font-size: 0.63rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: 1px solid var(--lgray);
+      padding: 0.26rem 0.72rem;
+      border-radius: 100px;
+      color: var(--gray);
+      transition: all 0.15s;
+      white-space: nowrap;
+      background: var(--bg);
+    }
+    .pill:hover { border-color: var(--black); color: var(--black); text-decoration: none; }
     .avatar {
-      width: 108px; height: 108px; border-radius: 50%;
-      overflow: hidden; flex-shrink: 0;
-      box-shadow: 0 0 0 1px var(--light-gray);
+      width: 110px; height: 110px;
+      border-radius: 50%;
+      background: var(--xlgray);
+      border: 1px solid var(--lgray);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.6rem;
+      overflow: hidden;
+      justify-self: end;
     }
-    .avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .avatar-fallback {
-      width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
-      background: var(--light-gray);
-      font-family: var(--serif); font-size: 2.4rem; color: var(--gray); font-style: italic;
+    .avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* SECTION */
+    section { padding: 3.5rem 0; border-bottom: 1px solid var(--lgray); }
+    .sec-label {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 1.8rem;
     }
 
-    /* ── SECTION ── */
-    section { margin-bottom: 3.8rem; }
-    .section-label {
-      font-family: var(--mono); font-size: 0.63rem; letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--gray); margin-bottom: 1.35rem; display: flex; align-items: center; gap: 0.8rem;
-    }
-    .section-label::after { content: ''; flex: 1; height: 1px; background: var(--light-gray); }
-
-    /* ── ABOUT ── */
-    .about-text p { font-size: 1rem; color: #2e2e2a; margin-bottom: 0.9rem; }
+    /* ABOUT */
+    .about-grid { display: grid; grid-template-columns: 1fr 210px; gap: 3.5rem; }
+    .about-text p { margin-bottom: 0.9rem; color: #333; }
     .about-text p:last-child { margin-bottom: 0; }
-    .about-text a { color: var(--link); text-decoration: none; }
-    .about-text a:hover { text-decoration: underline; }
-
-    /* ── SKILLS ── */
-    .skills-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem; margin-top: 0.5rem;
+    .side-head {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 0.6rem;
+      margin-top: 1.4rem;
     }
-    .skill-group { }
-    .skill-group-label {
-      font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.13em; text-transform: uppercase;
-      color: var(--gray); margin-bottom: 0.4rem;
-    }
+    .side-head:first-child { margin-top: 0; }
     .tags { display: flex; flex-wrap: wrap; gap: 0.35rem; }
     .tag {
-      font-family
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.05em;
+      padding: 0.18rem 0.55rem;
+      background: var(--xlgray);
+      border: 1px solid var(--lgray);
+      border-radius: 3px;
+      color: var(--black);
+    }
+    .edu-item { margin-bottom: 0.75rem; }
+    .edu-school { font-size: 0.87rem; font-weight: bold; }
+    .edu-detail { font-size: 0.8rem; color: var(--gray); }
+
+    /* GLASS CARD */
+    .glass-card {
+      background: rgba(255,255,255,0.75);
+      border: 1px solid rgba(220,220,220,0.9);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      overflow: hidden;
+      transition: transform 0.22s, box-shadow 0.22s;
+      position: relative;
+    }
+    .glass-card::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(145deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0) 50%);
+      pointer-events: none;
+      border-radius: var(--radius);
+    }
+    .glass-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-h);
+    }
+
+    /* PROJECT CARDS */
+    .card-grid { display: grid; gap: 1rem; }
+    .project-card {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      min-height: 155px;
+    }
+    .card-img {
+      background: var(--xlgray);
+      border-right: 1px solid var(--lgray);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 0.4rem;
+      padding: 1rem;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .card-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      position: absolute; inset: 0;
+      transition: transform 0.4s;
+    }
+    .glass-card:hover .card-img img { transform: scale(1.05); }
+    .ph-icon { font-size: 1.8rem; opacity: 0.25; position: relative; z-index: 1; }
+    .ph-text {
+      font-family: var(--mono);
+      font-size: 0.5rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gray);
+      opacity: 0.55;
+      position: relative; z-index: 1;
+    }
+    .card-body {
+      padding: 1.2rem 1.4rem;
+      display: flex; flex-direction: column;
+      position: relative; z-index: 1;
+    }
+    .card-header {
+      display: flex; justify-content: space-between;
+      align-items: baseline; gap: 0.8rem; margin-bottom: 0.15rem;
+    }
+    .card-title { font-size: 0.94rem; font-weight: bold; font-style: italic; line-height: 1.3; }
+    .card-date { font-family: var(--mono); font-size: 0.58rem; color: var(--gray); white-space: nowrap; flex-shrink: 0; }
+    .card-role {
+      font-family: var(--mono); font-size: 0.58rem;
+      letter-spacing: 0.07em; text-transform: uppercase;
+      color: var(--gray); margin-bottom: 0.5rem;
+    }
+    .card-body p { font-size: 0.85rem; color: #444; line-height: 1.62; flex: 1; }
+    .card-footer { display: flex; gap: 0.9rem; margin-top: 0.75rem; flex-wrap: wrap; align-items: center; }
+    .card-footer a {
+      font-family: var(--mono); font-size: 0.58rem;
+      letter-spacing: 0.08em; text-transform: uppercase; color: var(--link);
+    }
+    .card-footer a:hover { opacity: 0.65; text-decoration: none; }
+
+    /* BADGES */
+    .badge {
+      display: inline-block;
+      font-family: var(--mono); font-size: 0.54rem;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      border: 1px solid; padding: 0.06rem 0.38rem; border-radius: 2px;
+    }
+    .b-c      { color: #555;    border-color: #ccc;    background: #f8f8f8; }
+    .b-cuda   { color: #3a6b20; border-color: #b5d89a; background: #f3faf0; }
+    .b-mpi    { color: #1a4fa0; border-color: #99bbdd; background: #f0f5fc; }
+    .b-python { color: #1a4fa0; border-color: #99bbdd; background: #f0f5fc; }
+    .b-os     { color: #7a3a10; border-color: #ddbb99; background: #fdf6f0; }
+    .b-journal{ color: #2a7a2a; border-color: #99cc99; background: #f0faf0; }
+    .b-oral   { color: #b85c1a; border-color: #e8c4a8; background: #fdf5ef; }
+    .b-poster { color: #1a4fa0; border-color: #99bbdd; background: #f0f5fc; }
+
+    /* GROUP LABEL */
+    .group-label {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin: 1.6rem 0 0.6rem;
+    }
+    .group-label:first-child { margin-top: 0; }
+
+    /* PUB CARDS */
+    .pub-card {
+      display: grid;
+      grid-template-columns: 1fr 148px;
+      min-height: 138px;
+    }
+    .pub-body {
+      padding: 1.2rem 1.3rem 1.1rem 1.4rem;
+      display: flex; flex-direction: column;
+      position: relative; z-index: 1;
+    }
+    .pub-title { font-size: 0.93rem; font-weight: bold; line-height: 1.4; margin-bottom: 0.25rem; }
+    .pub-authors { font-size: 0.8rem; color: var(--gray); margin-bottom: 0.2rem; }
+    .pub-authors strong { color: var(--black); }
+    .pub-venue {
+      font-size: 0.8rem; font-style: italic; color: var(--gray);
+      margin-bottom: 0.5rem;
+      display: flex; align-items: center; gap: 0.45rem; flex-wrap: wrap;
+    }
+    .pub-img {
+      background: var(--xlgray);
+      border-left: 1px solid var(--lgray);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 0.35rem; position: relative; overflow: hidden;
+    }
+    .pub-img img {
+      width: 100%; height: 100%;
+      object-fit: cover; position: absolute; inset: 0;
+      transition: transform 0.4s;
+    }
+    .glass-card:hover .pub-img img { transform: scale(1.05); }
+
+    /* FOOTER */
+    footer {
+      padding: 2.2rem 0 3rem;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    footer p { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.06em; color: var(--gray); }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero { animation: fadeUp 0.45s ease both; }
+    section:nth-of-type(1) { animation: fadeUp 0.45s 0.06s ease both; }
+    section:nth-of-type(2) { animation: fadeUp 0.45s 0.11s ease both; }
+    section:nth-of-type(3) { animation: fadeUp 0.45s 0.16s ease both; }
+    section:nth-of-type(4) { animation: fadeUp 0.45s 0.21s ease both; }
+
+    /* RESPONSIVE */
+    @media (max-width: 620px) {
+      html { font-size: 15px; }
+      .hero { grid-template-columns: 1fr; padding: 3rem 0 2.5rem; }
+      .avatar { display: none; }
+      .about-grid { grid-template-columns: 1fr; }
+      .project-card { grid-template-columns: 1fr; }
+      .card-img { height: 120px; border-right: none; border-bottom: 1px solid var(--lgray); }
+      .pub-card { grid-template-columns: 1fr; }
+      .pub-img { display: none; }
+      nav { padding: 0 1.2rem; }
+      .wrap { padding: 0 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-name">500boiledpotatoes.github.io</span>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="#projects">Projects</a></li>
+  </ul>
+</nav>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div>
+      <h1>Lu Jingyu <span>· 卢靖宇</span></h1>
+      <p class="hero-sub">ANU &nbsp;·&nbsp; BJUT '24 &nbsp;·&nbsp; UCD '24 First Class Honours</p>
+      <p>
+        I build things close to the metal — CUDA kernels, distributed solvers, OS internals.
+        Interested in <strong>computer architecture</strong>, <strong>systems programming</strong>,
+        and <strong>HPC</strong>. Currently applying for PhD positions.
+      </p>
+      <div class="hero-links">
+        <a class="pill" href="mailto:jingyu.lu@anu.edu.au">✉ Email</a>
+        <a class="pill" href="https://github.com/500BoiledPotatoes" target="_blank">GitHub</a>
+        <a class="pill" href="https://www.linkedin.com/in/jingyu-lu-9ba475274/" target="_blank">LinkedIn</a>
+        <a class="pill" href="cv.pdf" target="_blank">CV / Résumé</a>
+      </div>
+    </div>
+    <div class="avatar">
+      <!-- Replace with: <img src="photo.jpg" alt="Lu Jingyu"> -->
+      👤
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="sec-label">About</div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>
+          I am a postgraduate student at <strong>Australian National University</strong>,
+          previously at <strong>Beijing University of Technology (BJUT)</strong> and
+          <strong>University College Dublin</strong>, where I graduated with First Class Honours.
+        </p>
+        <p>
+          My work sits at the intersection of computer architecture and systems software.
+          I care about how programs map onto hardware — from cache hierarchies and memory
+          bandwidth to inter-node communication — and how to extract maximum throughput
+          from modern parallel architectures.
+        </p>
+        <p>
+          More recently I have been exploring <strong>LLM safety research</strong>,
+          contributing to open-source tooling for probing language model robustness.
+        </p>
+      </div>
+      <div>
+        <div class="side-head">Research Interests</div>
+        <div class="tags">
+          <span class="tag">Computer Architecture</span>
+          <span class="tag">Systems Programming</span>
+          <span class="tag">HPC</span>
+          <span class="tag">GPU Computing</span>
+          <span class="tag">Distributed Systems</span>
+          <span class="tag">OS Internals</span>
+          <span class="tag">LLM Safety</span>
+        </div>
+        <div class="side-head">Education</div>
+        <div class="edu-item">
+          <div class="edu-school">Australian National University</div>
+          <div class="edu-detail">Postgraduate · 2024 –</div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-school">University College Dublin</div>
+          <div class="edu-detail">First Class Honours · 2024</div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-school">北京工业大学 (BJUT)</div>
+          <div class="edu-detail">Graduate · 2024</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PUBLICATIONS -->
+  <section id="publications">
+    <div class="sec-label">Publications</div>
+    <div class="card-grid">
+
+      <div class="glass-card pub-card">
+        <div class="pub-body">
+          <div class="pub-title">A Comprehensive Review of Deep Learning in EEG-based Emotion Recognition: Classifications, Trends, and Practical Implications</div>
+          <div class="pub-authors">W Ma, Y Zheng, T Li, Z Li, <strong>Y Li</strong>, L Wang</div>
+          <div class="pub-venue">
+            PeerJ Computer Science
+            <span class="badge b-journal">Journal</span>
+          </div>
+          <div class="card-footer">
+            <a href="#" target="_blank">Paper →</a>
+            <a href="#" target="_blank">DOI →</a>
+          </div>
+        </div>
+        <div class="pub-img">
+          <!-- <img src="eeg_domain.png" alt="EEG domain adaptation figure"> -->
+          <span class="ph-icon">📊</span>
+          <span class="ph-text">Figure</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="sec-label">Projects</div>
+    <div class="card-grid">
+
+      <p class="group-label">🖥️ &nbsp;Systems Programming</p>
+
+      <div class="glass-card project-card">
+        <div class="card-img">
+          <!-- <img src="proj_xv6.png" alt="xv6"> -->
+          <span class="ph-icon">🐧</span>
+          <span class="ph-text">Project Image</span>
+        </div>
+        <div class="card-body">
+          <div class="card-header">
+            <span class="card-title">xv6-os-projects</span>
+            <span class="card-date">2024</span>
+          </div>
+          <div class="card-role">Kernel Engineering · MIT xv6</div>
+          <p>Kernel-level extensions to MIT's xv6: system calls, scheduling algorithms, virtual memory management, and file system features — all implemented from scratch at the OS level.</p>
+          <div class="card-footer">
+            <span class="badge b-os">C</span>
+            <span class="badge b-os">OS Kernel</span>
+            <span class="badge b-os">xv6</span>
+            <a href="https://github.com/500BoiledPotatoes/xv6-os-projects" target="_blank">GitHub →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass-card project-card">
+        <div class="card-img">
+          <!-- <img src="proj_train.png" alt="train control"> -->
+          <span class="ph-icon">🚆</span>
+          <span class="ph-text">Project Image</span>
+        </div>
+        <div class="card-body">
+          <div class="card-header">
+            <span class="card-title">CSAPP-concurrent-train-traffic-control</span>
+            <span class="card-date">2024</span>
+          </div>
+          <div class="card-role">Concurrent Systems · CSAPP</div>
+          <p>Concurrent train scheduler with deadlock prevention via resource ordering. Fine-grained mutex strategy minimises lock contention across critical sections using POSIX threads.</p>
+          <div class="card-footer">
+            <span class="badge b-c">C</span>
+            <span class="badge b-c">Concurrency</span>
+            <span class="badge b-c">POSIX</span>
+            <a href="https://github.com/500BoiledPotatoes/CSAPP-concurrent-train-traffic-control" target="_blank">GitHub →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass-card project-card">
+        <div class="card-img">
+          <!-- <img src="proj_mem.png" alt="memory allocator"> -->
+          <span class="ph-icon">🧠</span>
+          <span class="ph-text">Project Image</span>
+        </div>
+        <div class="card-body">
+          <div class="card-header">
+            <span class="card-title">CSAPP-memory-allocators-and-garbage-collectors</span>
+            <span class="card-date">2024</span>
+          </div>
+          <div class="card-role">Memory Systems · CSAPP</div>
+          <p>Heap allocator with explicit free lists and boundary-tag coalescing, paired with a mark-and-sweep garbage collector. Optimised to balance throughput and fragmentation ratio.</p>
+          <div class="card-footer">
+            <span class="badge b-c">C</span>
+            <span class="badge b-c">Memory Mgmt</span>
+            <span class="badge b-c">GC</span>
+            <a href="https://github.com/500BoiledPotatoes/CSAPP-memory-allocators-and-garbage-collectors" target="_blank">GitHub →</a>
+          </div>
+        </div>
+      </div>
+
+      <p class="group-label">⚡ &nbsp;Parallel & High-Performance Computing</p>
+
+      <div class="glass-card project-card">
+        <div class="card-img">
+          <!-- <img src="proj_cuda.png" alt="CUDA solver"> -->
+          <span class="ph-icon">⚡</span>
+          <span class="ph-text">Project Image</span>
+        </div>
+        <div class="card-body">
+          <div class="card-header">
+            <span class="card-title">shared-memory-gpu-advection-solver</span>
+            <span class="card-date">2024</span>
+          </div>
+          <div class="card-role">GPU Computing · CUDA</div>
+          <p>GPU solver for advection equations using CUDA shared memory tiling. Warp-aligned data staging cuts global memory bandwidth and maximises on-chip reuse.</p>
+          <div class="card-footer">
+            <span class="badge b-cuda">CUDA</span>
+            <span class="badge b-cuda">C</span>
+            <span class="badge b-cuda">HPC</span>
+            <a href="https://github.com/500BoiledPotatoes/shared-memory-gpu-advection-solver" target="_blank">GitHub →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass-card project-card">
+        <div class="card-img">
+          <!-- <img src="proj_mpi.png" alt="MPI solver"> -->
+          <span class="ph-icon">🔗</span>
+          <span class="ph-text">Project Image</span>
+        </div>
+        <div class="card-body">
+          <div class="card-header">
+            <span class="card-title">distributed-advection-solver-mpi</span>
+            <span class="card-date">2024</span>
+          </div>
+          <div class="card-role">Distributed Computing · MPI</div>
+          <p>Multi-node advection solver with halo exchange. Non-blocking MPI communication pipelines computation and data exchange across distributed processes to maximise throughput.</p>
+          <div class="card-footer">
+            <span class="badge b-mpi">C</span>
+            <span class="badge b-mpi">MPI</span>
+            <span class="badge b-mpi">Distributed</span>
+            <a href="https://github.com/500BoiledPotatoes/distributed-advection-solver-mpi" target="_blank">GitHub →</a>
+          </div>
+        </div>
+      </div>
+
+      <p class="group-label">🔐 &nbsp;LLM Safety</p>
+
+      <div class="glass-card project-card">
+        <div class="card-img">
+          <!-- <img src="proj_garak.png" alt="garak"> -->
+          <span class="ph-icon">🔐</span>
+          <span class="ph-text">Project Image</span>
+        </div>
+        <div class="card-body">
+          <div class="card-header">
+            <span class="card-title">garak <sup style="font-size:0.6rem;font-style:normal;font-weight:normal;">fork</sup></span>
+            <span class="card-date">2024</span>
+          </div>
+          <div class="card-role">LLM Safety · Red-teaming</div>
+          <p>Contributing to an open-source LLM vulnerability scanner — probing language models for jailbreaks, hallucination patterns, and safety boundary failures across multiple attack surfaces.</p>
+          <div class="card-footer">
+            <span class="badge b-python">Python</span>
+            <span class="badge b-python">LLM Safety</span>
+            <a href="https://github.com/500BoiledPotatoes/garak" target="_blank">GitHub →</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 Lu Jingyu</p>
+    <p>jingyu.lu@anu.edu.au</p>
+  </footer>
+
+</div>
+</body>
+</html>
